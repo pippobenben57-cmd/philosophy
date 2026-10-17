@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="系统学习西方哲学：从苏格拉底到二十世纪的四十位哲学家，每位都有核心问题、思想、论证、思想实验、概念、批评、承前启后、与中国思想对照和自测题；按提取练习、间隔重复、交错练习设计的二十周学习计划和闪卡复习系统。">
+<title>西方哲学 · 系统学习 — 渊默的学习小院</title>
+<style>
+:root{
+  --bg:#f2f1ee;--panel:#fbfaf8;--ink:#1d1f24;--soft:#5b616b;--faint:#8b919a;--line:#d5d4cf;
+  --acc:#4a3f78;--acc2:#a0623a;--acc-soft:#e6e3f0;--e0:#8a8f98;--e1:#2f6e8a;--e2:#4f7d4a;--e3:#7a5a2e;--e4:#a0623a;--e5:#3d5f9a;--e6:#7a3f6e;--e7:#8a3a3a;--e8:#2f6f6a;
+  --kai:"Kaiti SC","STKaiti","KaiTi","楷体",serif;
+  --song:"Songti SC","STSong","SimSun","Noto Serif CJK SC",serif;
+  --sans:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#14161a;--panel:#1b1e23;--ink:#e3e5e9;--soft:#a1a7b0;--faint:#737a84;--line:#32363d;--acc:#b4a8e8;--acc2:#e0a07a;--acc-soft:#2b2840;--e0:#9aa0a8;--e1:#7fb8d2;--e2:#9cc893;--e3:#d2b07a;--e4:#e0a07a;--e5:#8fb0e8;--e6:#d29ac6;--e7:#e08f8f;--e8:#7fcfc6;color-scheme:dark}
+}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--song);font-size:17px;line-height:1.9;padding:22px 18px 64px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0;text-align:inherit}
+a{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1080px;margin-inline:auto}
+.home{font-size:.84rem;color:var(--soft);text-decoration:none;letter-spacing:.06em}
+.home:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 24px;margin:12px 0 14px}
+.ttl{flex:1 1 360px;min-width:0}
+h1{font-family:var(--kai);font-weight:400;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1.15;margin:0;letter-spacing:.08em}
+.en{font-family:var(--sans);font-size:.9rem;color:var(--soft);margin:4px 0 0}
+.find{flex:0 1 280px;min-width:0}
+input[type=search]{font:inherit;font-size:.92rem;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:6px 12px;width:100%;border-radius:0}
+.qres{border:1px solid var(--line);background:var(--panel);padding:10px 14px;margin-bottom:14px;max-height:340px;overflow-y:auto}
+.qres p{margin:0 0 4px;font-size:.82rem;color:var(--soft)}
+.qres button{display:block;width:100%;padding:4px 0;font-size:.92rem;line-height:1.6;border-top:1px dotted var(--line)}
+.qres button b{font-weight:400;color:var(--acc);margin-right:8px}
+.qres button:hover span{text-decoration:underline}
+mark{background:var(--acc-soft);color:inherit}
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:2px 18px;padding:8px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:26px}
+nav.tabs a{font-family:var(--kai);font-size:1.06rem;color:var(--soft);text-decoration:none;border-bottom:2px solid transparent}
+nav.tabs a:hover{color:var(--ink)}
+nav.tabs a[aria-current="page"]{color:var(--acc);border-bottom-color:var(--acc)}
+@media (max-width:760px){nav.tabs{position:static}}
+main{max-width:880px}
+h2{font-family:var(--kai);font-weight:400;font-size:clamp(1.8rem,5vw,2.3rem);line-height:1.25;margin:0 0 10px}
+h3{font-family:var(--kai);font-weight:400;font-size:1.4rem;margin:36px 0 8px;color:var(--acc)}
+h4{font-family:var(--kai);font-weight:400;font-size:1.15rem;margin:0}
+p{margin:0 0 12px}
+.lede{font-size:1.04rem;max-width:42em}
+.soft{color:var(--soft)}
+.fine{font-size:.86rem;color:var(--soft);border-left:2px solid var(--acc);padding-left:10px;max-width:46em}
+.big{font-family:var(--kai);font-size:1.4rem;line-height:1.7;color:var(--acc);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:14px 0 18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0}
+.cards a{display:block;border:1px solid var(--line);background:var(--panel);padding:12px 14px;color:var(--ink);text-decoration:none}
+.cards a:hover{border-color:var(--acc)}
+.cards b{display:block;font-family:var(--kai);font-weight:400;font-size:1.15rem;color:var(--acc)}
+.cards span{font-size:.88rem;color:var(--soft);line-height:1.6;display:block}
+.row{padding:14px 0;border-top:1px solid var(--line)}
+.row h4 small{font-family:var(--sans);font-size:.78rem;color:var(--faint);margin-left:8px}
+.row p{margin:4px 0 0}
+ol.tl{list-style:none;margin:0;padding:0}
+ol.tl li{display:grid;grid-template-columns:5em minmax(0,1fr);gap:0 14px;padding:6px 0;border-top:1px dotted var(--line)}
+ol.tl b{font-weight:400;color:var(--acc);font-variant-numeric:tabular-nums}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:0 10px;padding:10px 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--sans);color:var(--panel);background:var(--acc);width:1.6em;height:1.6em;border-radius:50%;display:grid;place-items:center;font-size:.86rem;margin-top:.25em}
+.steps p{margin:2px 0 0}
+.loop{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 4px;font-family:var(--kai);font-size:1.05rem}
+.loop span{border:1px solid var(--acc);color:var(--acc);padding:2px 10px;background:var(--panel)}
+.loop i{font-style:normal;color:var(--faint)}
+.ch{margin-top:30px;border-top:2px solid var(--ink);padding-top:10px;scroll-margin-top:60px}
+.ch h3{margin:0;color:var(--ink)}
+.ch>p{color:var(--soft);margin:6px 0 4px}
+.pr{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:0 12px;padding:10px 0;border-top:1px dotted var(--line)}
+.pr .no{font-family:var(--sans);color:var(--acc);font-variant-numeric:tabular-nums;font-size:.9rem;padding-top:3px}
+.pr h4{font-size:1.1rem}
+.pr p{margin:2px 0 0;font-size:.97rem}
+ul.take{margin:6px 0 0;padding-left:1.2em}
+ul.take li{margin:2px 0}
+.part{margin-top:34px}
+.part>h3{color:var(--acc2)}
+.nt{margin-top:34px;border-top:2px solid var(--ink);padding-top:10px;scroll-margin-top:60px}
+.nt .pt{font-family:var(--sans);font-size:.78rem;color:var(--faint);letter-spacing:.04em}
+.nt h3{margin:2px 0 6px;color:var(--ink)}
+.nt .qq{font-family:var(--kai);font-size:1.12rem;color:var(--acc);margin:4px 0 10px}
+.nt h5{font-family:var(--sans);font-weight:600;font-size:.8rem;letter-spacing:.08em;color:var(--acc2);margin:14px 0 4px}
+.nt ul{margin:0;padding-left:1.2em}.nt li{margin:3px 0}
+.nt .todo li::marker{content:"□ "}
+.nt .ask{border-left:2px solid var(--acc2);padding-left:10px;color:var(--soft)}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:10px 0;font-family:var(--sans);font-size:.86rem}
+.toolbar button{border:1px solid var(--line);padding:2px 10px;background:var(--panel)}
+.toolbar button[aria-pressed="true"]{border-color:var(--acc);color:var(--acc)}
+.nt.hid .fold{display:none}
+.jump{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0;font-family:var(--kai);font-size:1.02rem}
+.jump a{color:var(--soft);text-decoration:none}
+.jump a:hover{color:var(--acc)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+td,th{text-align:left;vertical-align:top;padding:7px 10px 7px 0;border-top:1px solid var(--line)}
+th{font-weight:400;font-family:var(--kai);color:var(--soft)}
+td.e{font-family:var(--sans);font-size:.8rem;color:var(--faint)}
+.tw{overflow-x:auto}
+.quad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0;max-width:520px}
+.quad div{border:1px solid var(--line);background:var(--panel);padding:10px 12px;font-size:.9rem}
+.quad b{display:block;font-family:var(--kai);font-weight:400;color:var(--acc);font-size:1.05rem}
+footer{margin-top:56px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--faint);max-width:60em}
+@media (max-width:560px){.pr{grid-template-columns:minmax(0,1fr)}.pr .no{padding-top:0}}
+
+details.tk{border-top:1px solid var(--line);padding:12px 0}
+details.tk summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:0 14px}
+details.tk summary::-webkit-details-marker{display:none}
+details.tk summary .dt{font-family:var(--sans);font-size:.8rem;color:var(--faint);padding-top:4px}
+details.tk summary b{font-family:var(--kai);font-weight:400;font-size:1.18rem;color:var(--ink)}
+details.tk summary small{display:block;font-size:.84rem;color:var(--soft)}
+details.tk summary .kd{font-family:var(--sans);font-size:.72rem;color:var(--acc2);border:1px solid var(--acc2);padding:0 5px;margin-right:6px;vertical-align:2px}
+details.tk[open] summary b{color:var(--acc)}
+details.tk .bd{padding:8px 0 4px 0;margin-left:calc(9.5em + 14px)}
+details.tk .src{font-size:.84rem;color:var(--soft)}
+@media (max-width:640px){details.tk summary{grid-template-columns:minmax(0,1fr)}details.tk .bd{margin-left:0}}
+.bk{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:0 10px;padding:10px 0;border-top:1px dotted var(--line)}
+.bk .no{font-family:var(--sans);color:var(--faint);font-size:.82rem;padding-top:4px;font-variant-numeric:tabular-nums}
+.bk h4{font-size:1.12rem}
+.bk h4 small{font-family:var(--sans);font-size:.78rem;color:var(--faint);margin-left:8px}
+.bk p{margin:3px 0 0;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chips button{font-family:var(--sans);font-size:.82rem;border:1px solid var(--line);background:var(--panel);padding:3px 10px}
+.chips button[aria-pressed="true"]{border-color:var(--acc);color:var(--acc)}
+.six{counter-reset:s;list-style:none;padding:0;margin:8px 0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.six li{counter-increment:s;border:1px solid var(--line);background:var(--panel);padding:10px 12px 10px 44px;position:relative;font-size:.94rem;line-height:1.7}
+.six li::before{content:counter(s);position:absolute;left:12px;top:10px;font-family:var(--sans);color:var(--panel);background:var(--acc);width:1.5em;height:1.5em;border-radius:50%;display:grid;place-items:center;font-size:.82rem}
+.six b{display:block;font-family:var(--kai);font-weight:400;font-size:1.08rem;color:var(--acc)}
+.civ{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0}
+.civ div{border:1px solid var(--line);background:var(--panel);padding:8px 10px;font-size:.86rem;line-height:1.6}
+.civ b{display:block;font-family:var(--kai);font-weight:400;font-size:1.1rem;color:var(--acc)}
+.civ div.hl{border-color:var(--acc2)}.civ div.hl b{color:var(--acc2)}
+@media (max-width:640px){.civ{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.src a{word-break:break-all}
+
+.chip{display:inline-block;font-family:var(--sans);font-size:.72rem;color:#fff;padding:1px 7px;border-radius:2px;vertical-align:2px}
+@media (prefers-color-scheme: dark){.chip{color:#14161a}}
+.tline{position:relative;margin:14px 0 6px}
+.era{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:0 14px;padding:10px 0;border-top:1px solid var(--line)}
+.era .eh{border-left:4px solid;padding-left:8px}
+.era .eh b{display:block;font-family:var(--kai);font-weight:400;font-size:1.05rem;line-height:1.4}
+.era .eh small{font-family:var(--sans);font-size:.72rem;color:var(--faint)}
+.era .ppl{display:flex;flex-wrap:wrap;gap:6px}
+.era .ppl a{border:1px solid var(--line);background:var(--panel);padding:3px 10px;text-decoration:none;color:var(--ink);font-size:.92rem}
+.era .ppl a:hover{border-color:var(--acc)}
+.era .ppl a small{font-family:var(--sans);font-size:.7rem;color:var(--faint);margin-left:4px}
+.era .eq{font-size:.86rem;color:var(--soft);margin:6px 0 0}
+@media (max-width:560px){.era{grid-template-columns:minmax(0,1fr)}.era .eh{margin-bottom:6px}}
+.ph h2 small{font-family:var(--sans);font-size:.85rem;color:var(--faint);margin-left:10px}
+.ph .tagl{font-family:var(--kai);font-size:1.3rem;color:var(--acc);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 14px}
+.pre{border:1px dashed var(--acc);background:var(--panel);padding:10px 14px;margin:10px 0 18px}
+.pre b{font-family:var(--kai);font-weight:400;color:var(--acc);font-size:1.1rem}
+.pre textarea{width:100%;min-height:4.5em;margin-top:6px;font:inherit;font-size:.92rem;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:6px 8px;border-radius:0}
+.idea{padding:10px 0;border-top:1px dotted var(--line)}
+.idea h4{color:var(--ink)}
+.idea p{margin:3px 0 0}
+.hideon .idea p,.hideon .stp li span{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .15s}
+.hideon .idea p.shown,.hideon .stp li span.shown{filter:none}
+.stp{counter-reset:s;list-style:none;padding:0;margin:6px 0}
+.stp li{counter-increment:s;display:grid;grid-template-columns:2em minmax(0,1fr);gap:0 8px;padding:5px 0}
+.stp li::before{content:counter(s);font-family:var(--sans);font-size:.8rem;color:var(--panel);background:var(--acc);width:1.5em;height:1.5em;border-radius:50%;display:grid;place-items:center;margin-top:.3em}
+.note{font-size:.88rem;color:var(--soft);border-left:2px solid var(--acc2);padding-left:10px}
+.box{border:1px solid var(--line);background:var(--panel);padding:10px 14px;margin:8px 0}
+.box h4{color:var(--acc)}
+details.qz{border-top:1px solid var(--line);padding:9px 0}
+details.qz summary{cursor:pointer;font-family:var(--kai);font-size:1.08rem}
+details.qz summary::marker{color:var(--acc)}
+details.qz p{margin:6px 0 0 1.2em;color:var(--acc)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin:30px 0 0;border-top:1px solid var(--line);padding-top:12px}
+.pn a{text-decoration:none}
+.flt{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.flt button{font-family:var(--sans);font-size:.8rem;border:1px solid var(--line);background:var(--panel);padding:3px 10px}
+.flt button[aria-pressed="true"]{border-color:var(--acc);color:var(--acc)}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin:10px 0}
+.plist a{display:block;border:1px solid var(--line);background:var(--panel);padding:9px 12px;text-decoration:none;color:var(--ink);border-left-width:4px}
+.plist a b{font-family:var(--kai);font-weight:400;font-size:1.12rem}
+.plist a small{font-family:var(--sans);font-size:.72rem;color:var(--faint);margin-left:6px}
+.plist a span{display:block;font-size:.86rem;color:var(--soft);line-height:1.55;margin-top:2px}
+.plist a.done::after{content:"✓ 已学";font-family:var(--sans);font-size:.7rem;color:var(--acc);float:right;margin-top:-1.6em}
+.pos{display:grid;grid-template-columns:7em minmax(0,1fr);gap:0 12px;padding:7px 0;border-top:1px dotted var(--line)}
+.pos a{text-decoration:none;font-family:var(--kai);font-size:1.02rem}
+@media (max-width:520px){.pos{grid-template-columns:minmax(0,1fr)}}
+.wk{display:grid;grid-template-columns:2.2em 3.4em minmax(0,1fr);gap:0 10px;padding:10px 0;border-top:1px solid var(--line);align-items:start}
+.wk input{width:1.2em;height:1.2em;margin-top:.35em;accent-color:var(--acc)}
+.wk .n{font-family:var(--sans);font-size:.82rem;color:var(--faint);padding-top:3px}
+.wk b{font-family:var(--kai);font-weight:400;font-size:1.08rem}
+.wk .who{font-size:.86rem}
+.wk .who a{margin-right:8px}
+.wk p{margin:2px 0 0;font-size:.9rem;color:var(--soft)}
+.wk.ok b{color:var(--faint);text-decoration:line-through}
+.bar{height:8px;background:var(--line);margin:8px 0 2px;max-width:420px}
+.bar i{display:block;height:100%;background:var(--acc)}
+.card{border:1px solid var(--acc);background:var(--panel);padding:22px 20px;margin:12px 0;min-height:11em;max-width:640px}
+.card .meta{font-family:var(--sans);font-size:.74rem;color:var(--faint);margin-bottom:8px}
+.card .qtext{font-family:var(--kai);font-size:1.3rem;line-height:1.6}
+.card .atext{margin-top:14px;padding-top:12px;border-top:1px dotted var(--line);color:var(--acc);font-size:1.02rem}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.btns button{font-family:var(--sans);font-size:.88rem;border:1px solid var(--acc);color:var(--acc);background:var(--panel);padding:6px 14px}
+.btns button.pri{background:var(--acc);color:var(--panel)}
+.boxes{display:flex;gap:6px;flex-wrap:wrap;font-family:var(--sans);font-size:.8rem;color:var(--soft);margin:8px 0}
+.boxes span{border:1px solid var(--line);padding:2px 8px;background:var(--panel)}
+.met{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:12px 0;border-top:1px solid var(--line)}
+.met h4{color:var(--acc)}
+.met dl{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:4px 12px;margin:4px 0 0}
+.met dt{font-family:var(--sans);font-size:.8rem;color:var(--acc2);padding-top:4px}
+.met dd{margin:0;font-size:.95rem}
+@media (max-width:520px){.met dl{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../">← 渊默的学习小院</a>
+<header>
+  <div class="ttl"><h1>西方哲学</h1><p class="en">从苏格拉底到二十世纪 · 四十位哲学家 · 二十周学习计划</p></div>
+  <div class="find"><input id="q" type="search" placeholder="搜：洞穴、我思故我在、无知之幕……" aria-label="搜索全站"></div>
+</header>
+<div id="qres" class="qres" hidden></div>
+<nav class="tabs" id="tabs" aria-label="栏目">
+  <a href="#/" data-t="">总览</a>
+  <a href="#/method" data-t="method">学习方法</a>
+  <a href="#/plan" data-t="plan">二十周计划</a>
+  <a href="#/map" data-t="map">地图</a>
+  <a href="#/list" data-t="list">哲学家</a>
+  <a href="#/themes" data-t="themes">问题线</a>
+  <a href="#/review" data-t="review">复习</a>
+  <a href="#/terms" data-t="terms">概念</a>
+</nav>
+<main id="main"></main>
+<footer>本站为个人学习整理，所有介绍、论证重构、例子和题目均为编者撰写的学习材料，不是原典译文；生平中带“据说”的是流传的轶事。闪卡和学习进度只保存在你自己的浏览器里，换设备或清除浏览数据后会重新开始。</footer>
+</div>
+<script src="p1.js"></script>
+<script src="p2.js"></script>
+<script src="p3.js"></script>
+<script src="p4.js"></script>
+<script src="p5.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s),main=$("#main"),qres=$("#qres"),q=$("#q");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const row=(h,p)=>`<div class="row"><h4>${esc(h)}</h4><p>${esc(p)}</p></div>`;
+const ERA={};P.ERAS.forEach(e=>ERA[e[0]]=e);
+const PH={};P.PH.forEach(p=>PH[p.id]=p);
+const ecol=id=>`var(--e${ERA[id][3]})`;
+const chip=id=>`<span class="chip" style="background:${ecol(id)}">${esc(ERA[id][1])}</span>`;
+const plink=id=>PH[id]?`<a href="#/p/${id}">${esc(PH[id].name)}</a>`:esc(id);
+/* 本地存储（失败时降级为内存） */
+const MEM={};
+function load(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return MEM[k]||d}}
+function save(k,v){MEM[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const DONE=()=>load("phil-done",{});
+/* 卡片库 */
+const CARDS=[];
+P.PH.forEach(p=>{p.terms.forEach((t,i)=>CARDS.push({id:p.id+"-t"+i,p:p.id,q:`「${t[0]}」是什么意思？（${p.name}）`,a:t[2]+(t[1]&&t[1]!=="—"?`（${t[1]}）`:"")}));
+  p.quiz.forEach((x,i)=>CARDS.push({id:p.id+"-q"+i,p:p.id,q:x[0],a:x[1]}));
+  CARDS.push({id:p.id+"-tag",p:p.id,q:`“${p.tag}”是哪位哲学家的核心思想或名言？`,a:p.name+"（"+p.yrs+"）"});});
+const INTV=[0,1,2,4,8,16];const DAY=864e5;
+function today(){const d=new Date();d.setHours(0,0,0,0);return d.getTime()}
+const V={};
+V[""]=()=>{const done=DONE(),n=Object.keys(done).length;
+return `<p class="big">未经审视的人生不值得过。</p><p class="lede">${esc(P.INTRO)}</p>
+<h3>三步开始</h3><ol class="steps">
+<li><div><h4>先读“学习方法”</h4><p>十分钟了解为什么要闭卷回忆、间隔复习、交错比较，以及每天的流程。</p></div></li>
+<li><div><h4>按“二十周计划”推进</h4><p>每周一到两位哲学家，学完在计划里打勾；也可以在“地图”上按时代自由跳读。</p></div></li>
+<li><div><h4>每天打开“复习”</h4><p>完成当天到期的闪卡；每周做一次混合测验，并选一条“问题线”写一页纸。</p></div></li></ol>
+<h3>你的进度</h3><div class="bar"><i style="width:${(n/P.PH.length*100).toFixed(1)}%"></i></div><p class="soft" style="font-size:.88rem">已学 ${n} / ${P.PH.length} 位哲学家 · 闪卡 ${CARDS.length} 张</p>
+<h3>九个时代</h3>${mapHTML()}
+<h3>十二条问题线</h3><div class="cards">${P.THEMES.map(t=>`<a href="#/themes/${t[0]}"><b>${esc(t[1])}</b><span>${esc(t[3].map(x=>PH[x[0]]?PH[x[0]].name:"").join("、"))}</span></a>`).join("")}</div>`};
+function mapHTML(){return P.ERAS.map(e=>{const ps=P.PH.filter(p=>p.era===e[0]);
+ return `<div class="era"><div class="eh" style="border-color:${ecol(e[0])}"><b>${esc(e[1])}</b><small>${esc(e[2])}</small></div><div>${ps.length?`<div class="ppl">${ps.map(p=>`<a href="#/p/${p.id}">${esc(p.name)}<small>${esc(p.yrs.split("；")[0])}</small></a>`).join("")}</div>`:`<p class="soft" style="margin:0;font-size:.9rem">泰勒斯、赫拉克利特、巴门尼德、德谟克利特、普罗泰戈拉（见下方概述）</p>`}<p class="eq">大问题：${esc(e[5])}</p></div></div>`}).join("")}
+V.map=()=>`<h2>西方哲学地图</h2><p class="fine">按时代从上到下排列，颜色区分时代。先看清整张地图，再进入细节：专家和新手的区别，往往就在于有没有一张组织良好的知识地图。</p>${P.ERAS.map(e=>`<h3 style="color:${ecol(e[0])}">${esc(e[1])} <small style="font-family:var(--sans);font-size:.8rem;color:var(--faint)">${esc(e[2])}</small></h3><p>${esc(e[4])}</p><p class="soft">这一时期的大问题：${esc(e[5])}</p>${P.PH.filter(p=>p.era===e[0]).map(p=>`<div class="pos"><a href="#/p/${p.id}">${esc(p.name)}</a><span>${esc(p.tag)}</span></div>`).join("")}`).join("")}`;
+V.method=()=>`<h2>学习方法</h2><p class="fine">下面的方法都来自认知心理学的研究。邓洛斯基等人 2013 年对十种常见学习方法的系统综述中，效用最高的是“练习测试”和“分散练习”；划重点、反复重读的效用最低。本站的每个栏目都是按这些方法设计的。</p>
+${P.METHOD.map(m=>`<div class="met"><h4>${esc(m[0])}</h4><dl><dt>是什么</dt><dd>${esc(m[1])}</dd><dt>研究证据</dt><dd>${esc(m[2])}</dd><dt>本站怎么用</dt><dd>${esc(m[3])}</dd></dl></div>`).join("")}
+<h3>每天怎么学一位哲学家</h3><ol class="tl">${P.ROUTINE.map(r=>`<li><b style="width:auto">${esc(r[0])}</b><span>${esc(r[1])}</span></li>`).join("")}</ol>
+<h3>三个常见误区</h3>${row("反复重读、画重点","感觉很熟悉，其实只是认得，不是记得。熟悉感会骗人。")}${row("一口气学完一个人再学下一个","集中学习当时效果好，过几周就忘了；分散和交错更费力，但记得更牢。")}${row("只看二手材料","二手材料是地图，原典才是实地。每位哲学家都附了最适合入门的原典篇目。")}`;
+V.plan=()=>{const ok=load("phil-plan",{});const n=P.PLAN.filter(w=>ok[w[0]]).length;
+return `<h2>二十周学习计划</h2><p class="fine">每周大约四到五小时：工作日每天三十分钟学习加十分钟闪卡，周末三十分钟做混合测验和问题线写作。勾选会保存在你的浏览器里。</p>
+<div class="bar"><i style="width:${n/20*100}%"></i></div><p class="soft" style="font-size:.88rem">已完成 ${n} / 20 周</p>
+${P.PLAN.map(w=>`<div class="wk${ok[w[0]]?" ok":""}"><input type="checkbox" data-wk="${w[0]}" ${ok[w[0]]?"checked":""} aria-label="第${w[0]}周完成"><span class="n">第 ${w[0]} 周</span><div><b>${esc(w[1])}</b><div class="who">${w[2].map(plink).join("")}</div><p>${esc(w[3])}</p></div></div>`).join("")}`};
+let lf="all";
+V.list=()=>{const done=DONE();return `<h2>四十位哲学家</h2><p class="fine">点开任意一位都是同样的结构。学完一位，在页面底部点“我学完了”，这里会显示对勾。</p>
+<div class="flt" id="flt"><button data-e="all" aria-pressed="${lf==="all"}">全部</button>${P.ERAS.filter(e=>P.PH.some(p=>p.era===e[0])).map(e=>`<button data-e="${e[0]}" aria-pressed="${lf===e[0]}">${esc(e[1])}</button>`).join("")}</div>
+<div class="plist">${P.PH.filter(p=>lf==="all"||p.era===lf).map(p=>`<a href="#/p/${p.id}" class="${done[p.id]?"done":""}" style="border-left-color:${ecol(p.era)}"><b>${esc(p.name)}</b><small>${esc(p.yrs.split("；")[0])}</small><span>${esc(p.tag)}</span></a>`).join("")}</div>`};
+let hide=false;
+V.p=id=>{const p=PH[id]||P.PH[0],k=P.PH.indexOf(p),pv=P.PH[k-1],nx=P.PH[k+1],done=DONE();
+const themes=P.THEMES.filter(t=>t[3].some(x=>x[0]===p.id));
+return `<article class="ph${hide?" hideon":""}" id="art"><p>${chip(p.era)}</p><h2>${esc(p.name)}<small>${esc(p.en)} · ${esc(p.yrs)}</small></h2>
+<p class="tagl">${esc(p.tag)}</p>
+<div class="pre"><b>先测后学：他想回答的问题</b><p style="margin:4px 0 0">${esc(p.q)}</p><textarea placeholder="读之前，先花一分钟写下你自己的答案（不会保存）"></textarea></div>
+<div class="toolbar"><button id="hidebtn" aria-pressed="${hide}">${hide?"显示全部解释":"闭卷回忆模式"}</button><span class="soft">闭卷模式会模糊解释文字，先自己回忆，再点击文字揭开。</span></div>
+<h3>生平</h3><p>${esc(p.bio)}</p>
+<h3>核心思想</h3>${p.ideas.map(x=>`<div class="idea"><h4>${esc(x[0])}</h4><p>${esc(x[1])}</p></div>`).join("")}
+<h3>经典论证：${esc(p.arg.t)}</h3><ol class="stp">${p.arg.steps.map(s=>`<li><span>${esc(s)}</span></li>`).join("")}</ol><p class="note">${esc(p.arg.note)}</p>
+<h3>思想实验或例子</h3><div class="box"><h4>${esc(p.ex[0])}</h4><p style="margin:4px 0 0">${esc(p.ex[1])}</p></div>
+<h3>关键概念</h3><div class="tw"><table><tbody>${p.terms.map(t=>`<tr><td>${esc(t[0])}</td><td class="e">${esc(t[1])}</td><td>${esc(t[2])}</td></tr>`).join("")}</tbody></table></div>
+<h3>代表作</h3><p>${p.works.map(esc).join("　·　")}</p>
+<h3>批评与争议</h3><p>${esc(p.crit)}</p>
+<h3>承前启后</h3><p>${esc(p.link)}</p>
+<h3>对今天生活的启发</h3><p>${esc(p.life)}</p>
+<h3>与中国思想对照</h3><p>${esc(p.cn)}</p>
+<h3>入门读什么</h3><p>${esc(p.read)}</p>
+${themes.length?`<h3>出现在这些问题线里</h3><p>${themes.map(t=>`<a href="#/themes/${t[0]}">${esc(t[1])}</a>`).join("　")}</p>`:""}
+<h3>自测（先答再点开）</h3>${p.quiz.map((x,i)=>`<details class="qz"><summary>${i+1}. ${esc(x[0])}</summary><p>${esc(x[1])}</p></details>`).join("")}
+<div class="btns" style="margin-top:18px"><button id="donebtn" data-id="${p.id}" class="${done[p.id]?"":"pri"}">${done[p.id]?"✓ 已学完（点击取消）":"我学完了"}</button></div>
+<div class="pn">${pv?`<a href="#/p/${pv.id}">← ${esc(pv.name)}</a>`:"<span></span>"}${nx?`<a href="#/p/${nx.id}">${esc(nx.name)} →</a>`:`<a href="#/map">回到地图 →</a>`}</div></article>`};
+V.themes=id=>{if(id){const t=P.THEMES.find(x=>x[0]===id);if(t)return `<h2>${esc(t[1])}</h2><p class="lede">${esc(t[2])}</p>
+<p class="fine">交错练习：先遮住右边，只看名字，试着说出每位哲学家在这个问题上的立场；再对照。</p>
+${t[3].map(x=>`<div class="pos">${plink(x[0])}<span>${esc(x[1])}</span></div>`).join("")}
+<h3>你的思考</h3><p>${esc(t[4])}</p><p class="soft">写作练习：选其中两位立场相反的哲学家，用一页纸写出他们的分歧在哪里、各自最有力的理由是什么、你站在哪一边。</p>
+<p><a href="#/themes">← 全部问题线</a></p>`}
+return `<h2>十二条问题线</h2><p class="fine">同一个问题，跨越两千年的不同回答。按问题而不是按人来复习，就是交错练习：它逼你分辨“这是谁的观点、和谁相反”。</p>${P.THEMES.map(t=>`<div class="row"><h4><a href="#/themes/${t[0]}">${esc(t[1])}</a></h4><p>${esc(t[2])}</p><p class="soft" style="font-size:.86rem">${t[3].map(x=>PH[x[0]]?PH[x[0]].name:"").join(" → ")}</p></div>`).join("")}`};
+V.terms=()=>`<h2>关键概念</h2><p class="fine">全部 ${P.PH.reduce((a,p)=>a+p.terms.length,0)} 个概念，按时代排列。这些概念也都在“复习”的闪卡里。</p><div class="tw"><table><thead><tr><th>概念</th><th>原文</th><th>意思</th><th>哲学家</th></tr></thead><tbody>${P.PH.map(p=>p.terms.map(t=>`<tr><td>${esc(t[0])}</td><td class="e">${esc(t[1])}</td><td>${esc(t[2])}</td><td>${plink(p.id)}</td></tr>`).join("")).join("")}</tbody></table></div>`;
+/* 复习：莱特纳五盒 + 混合测验 */
+let rv={mode:"",queue:[],i:0,show:false,score:0};
+function state(){return load("phil-cards",{})}
+function dueCards(){const s=state(),t=today(),done=DONE(),learned=Object.keys(done);
+  const pool=CARDS.filter(c=>learned.length?done[c.p]:true);
+  return pool.filter(c=>{const x=s[c.id];return !x||x.due<=t})}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+V.review=()=>{const s=state(),bx=[0,0,0,0,0,0];CARDS.forEach(c=>{const x=s[c.id];bx[x?x.box:0]++});
+const due=dueCards(),learned=Object.keys(DONE()).length;
+if(rv.mode&&rv.i<rv.queue.length){const c=rv.queue[rv.i],p=PH[c.p];
+ return `<h2>${rv.mode==="due"?"今日复习":"混合测验"}</h2><p class="soft">第 ${rv.i+1} / ${rv.queue.length} 张${rv.mode==="mix"?` · 答对 ${rv.score}`:""}</p>
+ <div class="card"><div class="meta">${chip(p.era)} ${esc(p.name)}</div><div class="qtext">${esc(c.q)}</div>${rv.show?`<div class="atext">${esc(c.a)}</div>`:""}</div>
+ <div class="btns">${rv.show?`<button data-grade="0">没答上</button><button data-grade="1" class="pri">答对了</button>`:`<button data-act="show" class="pri">想好了，看答案</button>`}<button data-act="quit">结束</button></div>
+ <p class="soft" style="font-size:.86rem">先在心里或纸上完整地说出答案，再点开对照。诚实评分：只答出一半也算“没答上”。</p>`}
+if(rv.mode){const m=rv.mode,sc=rv.score,n=rv.queue.length;rv={mode:"",queue:[],i:0,show:false,score:0};
+ return `<h2>完成</h2><p class="lede">${m==="mix"?`混合测验答对 ${sc} / ${n}。答错的题已放回第一盒，明天会再出现。`:`今天到期的 ${n} 张卡片已经复习完。明天再来。`}</p><div class="btns"><button data-act="home" class="pri">回到复习首页</button></div>`}
+return `<h2>复习</h2><p class="fine">闪卡采用莱特纳五盒系统：新卡在第一盒；答对升一盒，下次间隔分别为 1、2、4、8、16 天；答错回到第一盒。${learned?"只出现你已标记“学完”的哲学家的卡片。":"你还没有标记学完任何哲学家，所以目前从全部卡片中出题；学完一位后在页面底部点“我学完了”，复习会自动只出已学内容。"}</p>
+<div class="boxes">${bx.map((n,i)=>`<span>${i===0?"未学":"第 "+i+" 盒"}：${n}</span>`).join("")}</div>
+<div class="btns"><button data-act="due" class="pri">今日复习（${Math.min(due.length,40)} 张）</button><button data-act="mix">混合测验（10 题，跨时代交错）</button><button data-act="reset">清空复习记录</button></div>
+<h3>为什么这样复习</h3>${row("提取胜过重读","每张卡都是一个问题，逼你从记忆中提取答案，这正是测试效应的来源。")}${row("间隔逐渐拉长","刚学的东西隔一天复习，记牢的东西隔两周再看，用最少的时间对抗遗忘曲线。")}${row("交错出题","混合测验从不同时代、不同哲学家中随机抽题，训练你区分相似的观点。")}`};
+function grade(ok){const c=rv.queue[rv.i],s=state(),x=s[c.id]||{box:0};
+  const nb=ok?Math.min(5,(x.box||0)+1):1;s[c.id]={box:nb,due:today()+INTV[nb]*DAY};save("phil-cards",s);
+  if(ok)rv.score++;rv.i++;rv.show=false;main.innerHTML=V.review();}
+function route(){
+  const p=location.hash.replace(/^#\/?/,"").split("/"),t=p[0]||"",arg=p[1];
+  document.querySelectorAll("#tabs a").forEach(a=>a.removeAttribute("aria-current"));
+  const cur=document.querySelector(`#tabs a[data-t="${t==="p"?"list":t}"]`);if(cur)cur.setAttribute("aria-current","page");
+  main.innerHTML=(V[t]||V[""])(arg);
+  const an=p[2];if(an){const el=document.getElementById(an);if(el){el.scrollIntoView({block:"center"});return}}
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+document.addEventListener("change",e=>{const w=e.target.closest("[data-wk]");if(w){const ok=load("phil-plan",{});if(w.checked)ok[w.dataset.wk]=1;else delete ok[w.dataset.wk];save("phil-plan",ok);w.closest(".wk").classList.toggle("ok",w.checked)}});
+document.addEventListener("click",e=>{
+  const f=e.target.closest("#flt button");if(f){lf=f.dataset.e;main.innerHTML=V.list();return}
+  const h=e.target.closest("#hidebtn");if(h){hide=!hide;const a=$("#art");a.classList.toggle("hideon",hide);h.setAttribute("aria-pressed",hide);h.textContent=hide?"显示全部解释":"闭卷回忆模式";document.querySelectorAll(".shown").forEach(x=>x.classList.remove("shown"));return}
+  const rev=e.target.closest(".hideon .idea p,.hideon .stp li span");if(rev){rev.classList.add("shown");return}
+  const d=e.target.closest("#donebtn");if(d){const done=DONE();if(done[d.dataset.id])delete done[d.dataset.id];else done[d.dataset.id]=today();save("phil-done",done);d.classList.toggle("pri",!done[d.dataset.id]);d.textContent=done[d.dataset.id]?"✓ 已学完（点击取消）":"我学完了";return}
+  const a=e.target.closest("[data-act]");if(a){const act=a.dataset.act;
+    if(act==="due"){rv={mode:"due",queue:shuffle(dueCards()).slice(0,40),i:0,show:false,score:0};if(!rv.queue.length){rv.mode="";alert("今天没有到期的卡片。");return}}
+    else if(act==="mix"){const learned=DONE();const pool=CARDS.filter(c=>c.id.includes("-q")&&(!Object.keys(learned).length||learned[c.p]));
+      const byEra={};shuffle(pool).forEach(c=>{const k=PH[c.p].era;(byEra[k]=byEra[k]||[]).push(c)});const out=[];const ks=Object.keys(byEra);let i=0;while(out.length<10&&ks.some(k=>byEra[k].length)){const k=ks[i++%ks.length];if(byEra[k].length)out.push(byEra[k].pop())}
+      rv={mode:"mix",queue:out,i:0,show:false,score:0}}
+    else if(act==="show"){rv.show=true}
+    else if(act==="quit"||act==="home"){rv={mode:"",queue:[],i:0,show:false,score:0}}
+    else if(act==="reset"){if(confirm("确定清空全部闪卡复习记录吗？已学标记和计划进度不受影响。"))save("phil-cards",{})}
+    main.innerHTML=V.review();window.scrollTo(0,0);return}
+  const g=e.target.closest("[data-grade]");if(g){grade(g.dataset.grade==="1");return}
+  const r=e.target.closest("[data-go]");if(r){qres.hidden=true;q.value="";const hh=r.dataset.go;if(location.hash===hh)route();else location.hash=hh}});
+const IDX=[],add=(w,go,t,x)=>IDX.push({w,go,t,x:String(x)});
+P.PH.forEach(p=>{add(p.name,"#/p/"+p.id,p.name+" "+p.en,[p.tag,p.q,p.bio].join(" "));p.ideas.forEach(x=>add(p.name,"#/p/"+p.id,x[0],x[1]));add(p.name,"#/p/"+p.id,p.arg.t,p.arg.steps.join(""));add(p.name,"#/p/"+p.id,p.ex[0],p.ex[1]);p.terms.forEach(t=>add(p.name,"#/p/"+p.id,t[0],t[1]+" "+t[2]));add(p.name,"#/p/"+p.id,"代表作",p.works.join(" "))});
+P.THEMES.forEach(t=>add("问题线","#/themes/"+t[0],t[1],t[2]+t[3].map(x=>x[1]).join("")));
+P.METHOD.forEach(m=>add("学习方法","#/method",m[0],m.slice(1).join("")));
+function snip(t,s){const i=t.toLowerCase().indexOf(s.toLowerCase());if(i<0)return "";const a=Math.max(0,i-16);return (a?"…":"")+esc(t.slice(a,i))+"<mark>"+esc(t.slice(i,i+s.length))+"</mark>"+esc(t.slice(i+s.length,i+s.length+28))+"…"}
+q.addEventListener("input",()=>{const s=q.value.trim();if(!s){qres.hidden=true;return}
+  const sl=s.toLowerCase(),out=IDX.filter(x=>(x.t+x.x).toLowerCase().includes(sl)).slice(0,60);qres.hidden=false;
+  qres.innerHTML=out.length?`<p>${out.length>=60?"前 60 条":out.length+" 条"}</p>`+out.map(x=>`<button data-go="${esc(x.go)}"><b>${esc(x.w)}</b><span>${esc(x.t)}</span>　<small class="soft">${snip(x.x,s)||""}</small></button>`).join(""):`<p>没有找到，换个词试试。</p>`});
+route();
+</script>
+</body>
+</html>
