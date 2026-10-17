@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="系统学习西方哲学：从苏格拉底到二十世纪的四十一位哲学家，每位都有核心问题、思想、论证、思想实验、概念、批评、承前启后、与中国思想对照和自测题；按提取练习、间隔重复、交错练习设计的二十周学习计划和闪卡复习系统。">
+<meta name="description" content="系统学习西方哲学并与中国思想对照：从苏格拉底到二十世纪的四十一位哲学家，每位都有核心问题、思想、论证、思想实验、概念、批评、承前启后、与中国思想对照和自测题；按提取练习、间隔重复、交错练习设计的二十周学习计划和闪卡复习系统。">
 <title>西方哲学 · 系统学习 — 渊默的学习小院</title>
 <style>
 :root{
@@ -210,6 +210,25 @@ details.qz p{margin:6px 0 0 1.2em;color:var(--acc)}
 .met dt{font-family:var(--sans);font-size:.8rem;color:var(--acc2);padding-top:4px}
 .met dd{margin:0;font-size:.95rem}
 @media (max-width:520px){.met dl{grid-template-columns:minmax(0,1fr)}}
+
+.ewbox{border:1px solid var(--acc2);background:var(--panel);padding:12px 16px;margin:10px 0}
+.ewbox .when{font-size:.95rem;margin:0 0 4px}
+.pair{border-top:1px dotted var(--line);padding:10px 0}
+.pair h4{font-size:1.15rem}
+.pair h4 small{font-family:var(--sans);font-size:.76rem;color:var(--faint);margin-left:8px}
+.pair dl{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:3px 10px;margin:4px 0 0}
+.pair dt{font-family:var(--sans);font-size:.78rem;color:var(--acc2);padding-top:4px}
+.pair dd{margin:0;font-size:.95rem}
+.ewask{font-family:var(--kai);font-size:1.1rem;color:var(--acc);border-left:3px solid var(--acc);padding-left:10px;margin-top:10px}
+.par{display:grid;grid-template-columns:7.5em minmax(0,1fr) minmax(0,1fr);gap:0 12px;padding:8px 0;border-top:1px solid var(--line);font-size:.93rem}
+.par.hd{font-family:var(--kai);color:var(--soft);border-top:2px solid var(--ink)}
+.par .y{font-family:var(--sans);font-size:.8rem;color:var(--faint);padding-top:2px}
+.par .w{color:var(--acc)}.par .c{color:var(--acc2)}
+@media (max-width:560px){.par{grid-template-columns:minmax(0,1fr)}.par.hd{display:none}.par .w::before{content:"西：";color:var(--faint)}.par .c::before{content:"中：";color:var(--faint)}}
+.cnidx{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.cnidx button{font-family:var(--kai);font-size:1rem;border:1px solid var(--line);background:var(--panel);padding:3px 10px}
+.cnidx button[aria-pressed="true"]{border-color:var(--acc2);color:var(--acc2)}
+.cnidx button small{font-family:var(--sans);font-size:.7rem;color:var(--faint);margin-left:3px}
 </style>
 </head>
 <body>
@@ -227,6 +246,7 @@ details.qz p{margin:6px 0 0 1.2em;color:var(--acc)}
   <a href="#/map" data-t="map">地图</a>
   <a href="#/list" data-t="list">哲学家</a>
   <a href="#/themes" data-t="themes">问题线</a>
+  <a href="#/ew" data-t="ew">东西对照</a>
   <a href="#/review" data-t="review">复习</a>
   <a href="#/terms" data-t="terms">概念</a>
 </nav>
@@ -238,6 +258,9 @@ details.qz p{margin:6px 0 0 1.2em;color:var(--acc)}
 <script src="p3.js"></script>
 <script src="p4.js"></script>
 <script src="p5.js"></script>
+<script src="p6.js"></script>
+<script src="p7.js"></script>
+<script src="p8.js"></script>
 <script>
 "use strict";
 const $=s=>document.querySelector(s),main=$("#main"),qres=$("#qres"),q=$("#q");
@@ -257,6 +280,7 @@ const DONE=()=>load("phil-done",{});
 const CARDS=[];
 P.PH.forEach(p=>{p.terms.forEach((t,i)=>CARDS.push({id:p.id+"-t"+i,p:p.id,q:`「${t[0]}」是什么意思？（${p.name}）`,a:t[2]+(t[1]&&t[1]!=="—"?`（${t[1]}）`:"")}));
   p.quiz.forEach((x,i)=>CARDS.push({id:p.id+"-q"+i,p:p.id,q:x[0],a:x[1]}));
+  const ew=P.EW[p.id];if(ew){CARDS.push({id:p.id+"-ew",p:p.id,q:`和${p.name}对照的中国思想家有哪些？各自相通在哪里？`,a:ew.pairs.map(x=>x[0]+"："+x[2].split("；")[0].split("。")[0]).join("　｜　")});}
   CARDS.push({id:p.id+"-tag",p:p.id,q:`“${p.tag}”是哪位哲学家的核心思想或名言？`,a:p.name+"（"+p.yrs+"）"});});
 const INTV=[0,1,2,4,8,16];const DAY=864e5;
 function today(){const d=new Date();d.setHours(0,0,0,0);return d.getTime()}
@@ -281,6 +305,26 @@ V.plan=()=>{const ok=load("phil-plan",{});const n=P.PLAN.filter(w=>ok[w[0]]).len
 return `<h2>二十周学习计划</h2><p class="fine">每周大约四到五小时：工作日每天三十分钟学习加十分钟闪卡，周末三十分钟做混合测验和问题线写作。勾选会保存在你的浏览器里。</p>
 <div class="bar"><i style="width:${n/20*100}%"></i></div><p class="soft" style="font-size:.88rem">已完成 ${n} / 20 周</p>
 ${P.PLAN.map(w=>`<div class="wk${ok[w[0]]?" ok":""}"><input type="checkbox" data-wk="${w[0]}" ${ok[w[0]]?"checked":""} aria-label="第${w[0]}周完成"><span class="n">第 ${w[0]} 周</span><div><b>${esc(w[1])}</b><div class="who">${w[2].map(plink).join("")}</div><p>${esc(w[3])}</p></div></div>`).join("")}`};
+
+const cnl=n=>{const k=Object.keys(P.CNLINK).find(x=>n.includes(x));return k?`<a href="${P.CNLINK[k]}" title="本站专题">${esc(n)} ↗</a>`:esc(n)};
+function ewHTML(p){const e=P.EW[p.id];if(!e)return `<h3>与中国思想对照</h3><p>${esc(p.cn)}</p>`;
+return `<h3 id="ew">东西对照</h3><div class="ewbox"><p class="when"><b style="font-family:var(--kai);font-weight:400;color:var(--acc2)">同时代的中国　</b>${esc(e.when)}</p></div>
+${e.pairs.map(x=>`<div class="pair"><h4>${cnl(x[0])}${x[1]?`<small>${esc(x[1])}</small>`:""}</h4><dl><dt>相通</dt><dd>${esc(x[2])}</dd><dt>差异</dt><dd>${esc(x[3])}</dd></dl></div>`).join("")}
+<p class="soft" style="font-size:.9rem;margin-top:8px"><b style="font-weight:400;color:var(--acc)">一句话小结：</b>${esc(p.cn)}</p>
+<p class="ewask">融会贯通：${esc(e.ask)}</p>`}
+const CNALIAS={"佛教的无我":["佛教"],"老庄":["老子","庄子"]};
+function cnNames(n){return n.replace(/（[^）]*）/g,"").split(/与|、/).map(x=>x.trim()).filter(Boolean).flatMap(x=>CNALIAS[x]||[x])}
+const CNIDX={};P.PH.forEach(p=>{const e=P.EW[p.id];if(e)e.pairs.forEach(x=>cnNames(x[0]).forEach(n=>{(CNIDX[n]=CNIDX[n]||[]).push([p.id,x])}))});
+let cnSel="";
+V.ew=()=>{const names=Object.keys(CNIDX).sort((a,b)=>CNIDX[b].length-CNIDX[a].length);
+return `<h2>东西对照</h2><p class="lede">把西方哲学放回世界史中看：同一时代，中国的思想家在想什么？不同时代，东西方的大家如何回答同一个问题？这一栏有三种进入方式：并行时间轴、问题线上的中西答案、以及从中国思想家出发的反向索引。</p>
+<h3>东西方并行时间轴</h3><div class="par hd"><span>年代</span><span>西方</span><span>中国</span></div>${P.PARALLEL.map(r=>`<div class="par"><span class="y">${esc(r[0])}</span><span class="w">${esc(r[1])}</span><span class="c">${esc(r[2])}</span></div>`).join("")}
+<p class="soft" style="font-size:.88rem">雅斯贝尔斯把公元前 800 年至前 200 年称为“轴心时代”：古希腊、中国、印度、以色列几乎同时出现了奠定各自文明的伟大思想家。孔子与苏格拉底、孟子庄子与亚里士多德，正是在这一时期。</p>
+<h3>从中国思想家出发</h3><p class="fine">点一位中国思想家，看他和哪些西方哲学家对照过。按出现次数排序。</p>
+<div class="cnidx" id="cnidx">${names.map(n=>`<button data-cn="${esc(n)}" aria-pressed="${cnSel===n}">${esc(n)}<small>${CNIDX[n].length}</small></button>`).join("")}</div>
+<div id="cnout">${cnSel&&CNIDX[cnSel]?cnOut(cnSel):""}</div>
+<h3>问题线上的中西答案</h3>${P.THEMES.map(t=>`<div class="row"><h4><a href="#/themes/${t[0]}">${esc(t[1])}</a></h4><p class="soft" style="font-size:.88rem">西：${esc(t[3].map(x=>PH[x[0]]?PH[x[0]].name:"").join("、"))}</p><p class="soft" style="font-size:.88rem">中：${esc((P.THEME_CN[t[0]]||[]).map(x=>x[0]).join("、"))}</p></div>`).join("")}`};
+function cnOut(n){return `<h4 style="color:var(--acc2);margin-top:10px">${cnl(n)}　与 ${CNIDX[n].length} 位西方哲学家对照</h4>${CNIDX[n].map(([id,x])=>`<div class="pair"><h4><a href="#/p/${id}/ew">${esc(PH[id].name)}</a><small>${esc(PH[id].yrs)} · 对照：${esc(x[0])}</small></h4><dl><dt>相通</dt><dd>${esc(x[2])}</dd><dt>差异</dt><dd>${esc(x[3])}</dd></dl></div>`).join("")}`}
 let lf="all";
 V.list=()=>{const done=DONE();return `<h2>四十一位哲学家</h2><p class="fine">点开任意一位都是同样的结构。学完一位，在页面底部点“我学完了”，这里会显示对勾。</p>
 <div class="flt" id="flt"><button data-e="all" aria-pressed="${lf==="all"}">全部</button>${P.ERAS.filter(e=>P.PH.some(p=>p.era===e[0])).map(e=>`<button data-e="${e[0]}" aria-pressed="${lf===e[0]}">${esc(e[1])}</button>`).join("")}</div>
@@ -301,7 +345,7 @@ return `<article class="ph${hide?" hideon":""}" id="art"><p>${chip(p.era)}</p><h
 <h3>批评与争议</h3><p>${esc(p.crit)}</p>
 <h3>承前启后</h3><p>${esc(p.link)}</p>
 <h3>对今天生活的启发</h3><p>${esc(p.life)}</p>
-<h3>与中国思想对照</h3><p>${esc(p.cn)}</p>
+${ewHTML(p)}
 <h3>入门读什么</h3><p>${esc(p.read)}</p>
 ${themes.length?`<h3>出现在这些问题线里</h3><p>${themes.map(t=>`<a href="#/themes/${t[0]}">${esc(t[1])}</a>`).join("　")}</p>`:""}
 <h3>自测（先答再点开）</h3>${p.quiz.map((x,i)=>`<details class="qz"><summary>${i+1}. ${esc(x[0])}</summary><p>${esc(x[1])}</p></details>`).join("")}
@@ -310,7 +354,7 @@ ${themes.length?`<h3>出现在这些问题线里</h3><p>${themes.map(t=>`<a href
 V.themes=id=>{if(id){const t=P.THEMES.find(x=>x[0]===id);if(t)return `<h2>${esc(t[1])}</h2><p class="lede">${esc(t[2])}</p>
 <p class="fine">交错练习：先遮住右边，只看名字，试着说出每位哲学家在这个问题上的立场；再对照。</p>
 ${t[3].map(x=>`<div class="pos">${plink(x[0])}<span>${esc(x[1])}</span></div>`).join("")}
-<h3>你的思考</h3><p>${esc(t[4])}</p><p class="soft">写作练习：选其中两位立场相反的哲学家，用一页纸写出他们的分歧在哪里、各自最有力的理由是什么、你站在哪一边。</p>
+${P.THEME_CN[t[0]]?`<h3>中国思想的回答</h3>${P.THEME_CN[t[0]].map(x=>`<div class="pos"><span style="font-family:var(--kai);font-size:1.02rem;color:var(--acc2)">${cnl(x[0])}</span><span>${esc(x[1])}</span></div>`).join("")}<p class="fine" style="margin-top:8px">比较练习：从上面西方和中国的回答中各选一位，写出他们最相通的地方和最根本的分歧。</p>`:""}<h3>你的思考</h3><p>${esc(t[4])}</p><p class="soft">写作练习：选其中两位立场相反的哲学家，用一页纸写出他们的分歧在哪里、各自最有力的理由是什么、你站在哪一边。</p>
 <p><a href="#/themes">← 全部问题线</a></p>`}
 return `<h2>十二条问题线</h2><p class="fine">同一个问题，跨越两千年的不同回答。按问题而不是按人来复习，就是交错练习：它逼你分辨“这是谁的观点、和谁相反”。</p>${P.THEMES.map(t=>`<div class="row"><h4><a href="#/themes/${t[0]}">${esc(t[1])}</a></h4><p>${esc(t[2])}</p><p class="soft" style="font-size:.86rem">${t[3].map(x=>PH[x[0]]?PH[x[0]].name:"").join(" → ")}</p></div>`).join("")}`};
 V.terms=()=>`<h2>关键概念</h2><p class="fine">全部 ${P.PH.reduce((a,p)=>a+p.terms.length,0)} 个概念，按时代排列。这些概念也都在“复习”的闪卡里。</p><div class="tw"><table><thead><tr><th>概念</th><th>原文</th><th>意思</th><th>哲学家</th></tr></thead><tbody>${P.PH.map(p=>p.terms.map(t=>`<tr><td>${esc(t[0])}</td><td class="e">${esc(t[1])}</td><td>${esc(t[2])}</td><td>${plink(p.id)}</td></tr>`).join("")).join("")}</tbody></table></div>`;
@@ -348,6 +392,7 @@ function route(){
 window.addEventListener("hashchange",route);
 document.addEventListener("change",e=>{const w=e.target.closest("[data-wk]");if(w){const ok=load("phil-plan",{});if(w.checked)ok[w.dataset.wk]=1;else delete ok[w.dataset.wk];save("phil-plan",ok);w.closest(".wk").classList.toggle("ok",w.checked)}});
 document.addEventListener("click",e=>{
+  const cb=e.target.closest("#cnidx button");if(cb){cnSel=cnSel===cb.dataset.cn?"":cb.dataset.cn;document.querySelectorAll("#cnidx button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cn===cnSel));$("#cnout").innerHTML=cnSel?cnOut(cnSel):"";if(cnSel)$("#cnout").scrollIntoView({block:"start"});return}
   const f=e.target.closest("#flt button");if(f){lf=f.dataset.e;main.innerHTML=V.list();return}
   const h=e.target.closest("#hidebtn");if(h){hide=!hide;const a=$("#art");a.classList.toggle("hideon",hide);h.setAttribute("aria-pressed",hide);h.textContent=hide?"显示全部解释":"闭卷回忆模式";document.querySelectorAll(".shown").forEach(x=>x.classList.remove("shown"));return}
   const rev=e.target.closest(".hideon .idea p,.hideon .stp li span");if(rev){rev.classList.add("shown");return}
@@ -365,6 +410,7 @@ document.addEventListener("click",e=>{
   const r=e.target.closest("[data-go]");if(r){qres.hidden=true;q.value="";const hh=r.dataset.go;if(location.hash===hh)route();else location.hash=hh}});
 const IDX=[],add=(w,go,t,x)=>IDX.push({w,go,t,x:String(x)});
 P.PH.forEach(p=>{add(p.name,"#/p/"+p.id,p.name+" "+p.en,[p.tag,p.q,p.bio].join(" "));p.ideas.forEach(x=>add(p.name,"#/p/"+p.id,x[0],x[1]));add(p.name,"#/p/"+p.id,p.arg.t,p.arg.steps.join(""));add(p.name,"#/p/"+p.id,p.ex[0],p.ex[1]);p.terms.forEach(t=>add(p.name,"#/p/"+p.id,t[0],t[1]+" "+t[2]));add(p.name,"#/p/"+p.id,"代表作",p.works.join(" "))});
+P.PH.forEach(p=>{const e=P.EW[p.id];if(e){add(p.name+" · 东西对照","#/p/"+p.id+"/ew","同时代的中国",e.when);e.pairs.forEach(x=>add(p.name+" · 东西对照","#/p/"+p.id+"/ew",x[0],x[2]+x[3]))}});
 P.THEMES.forEach(t=>add("问题线","#/themes/"+t[0],t[1],t[2]+t[3].map(x=>x[1]).join("")));
 P.METHOD.forEach(m=>add("学习方法","#/method",m[0],m.slice(1).join("")));
 function snip(t,s){const i=t.toLowerCase().indexOf(s.toLowerCase());if(i<0)return "";const a=Math.max(0,i-16);return (a?"…":"")+esc(t.slice(a,i))+"<mark>"+esc(t.slice(i,i+s.length))+"</mark>"+esc(t.slice(i+s.length,i+s.length+28))+"…"}
