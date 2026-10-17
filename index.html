@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="系统学习西方哲学：从苏格拉底到二十世纪的四十位哲学家，每位都有核心问题、思想、论证、思想实验、概念、批评、承前启后、与中国思想对照和自测题；按提取练习、间隔重复、交错练习设计的二十周学习计划和闪卡复习系统。">
+<meta name="description" content="系统学习西方哲学：从苏格拉底到二十世纪的四十一位哲学家，每位都有核心问题、思想、论证、思想实验、概念、批评、承前启后、与中国思想对照和自测题；按提取练习、间隔重复、交错练习设计的二十周学习计划和闪卡复习系统。">
 <title>西方哲学 · 系统学习 — 渊默的学习小院</title>
 <style>
 :root{
@@ -216,7 +216,7 @@ details.qz p{margin:6px 0 0 1.2em;color:var(--acc)}
 <div class="wrap">
 <a class="home" href="../">← 渊默的学习小院</a>
 <header>
-  <div class="ttl"><h1>西方哲学</h1><p class="en">从苏格拉底到二十世纪 · 四十位哲学家 · 二十周学习计划</p></div>
+  <div class="ttl"><h1>西方哲学</h1><p class="en">从苏格拉底到二十世纪 · 四十一位哲学家 · 二十周学习计划</p></div>
   <div class="find"><input id="q" type="search" placeholder="搜：洞穴、我思故我在、无知之幕……" aria-label="搜索全站"></div>
 </header>
 <div id="qres" class="qres" hidden></div>
@@ -282,7 +282,7 @@ return `<h2>二十周学习计划</h2><p class="fine">每周大约四到五小�
 <div class="bar"><i style="width:${n/20*100}%"></i></div><p class="soft" style="font-size:.88rem">已完成 ${n} / 20 周</p>
 ${P.PLAN.map(w=>`<div class="wk${ok[w[0]]?" ok":""}"><input type="checkbox" data-wk="${w[0]}" ${ok[w[0]]?"checked":""} aria-label="第${w[0]}周完成"><span class="n">第 ${w[0]} 周</span><div><b>${esc(w[1])}</b><div class="who">${w[2].map(plink).join("")}</div><p>${esc(w[3])}</p></div></div>`).join("")}`};
 let lf="all";
-V.list=()=>{const done=DONE();return `<h2>四十位哲学家</h2><p class="fine">点开任意一位都是同样的结构。学完一位，在页面底部点“我学完了”，这里会显示对勾。</p>
+V.list=()=>{const done=DONE();return `<h2>四十一位哲学家</h2><p class="fine">点开任意一位都是同样的结构。学完一位，在页面底部点“我学完了”，这里会显示对勾。</p>
 <div class="flt" id="flt"><button data-e="all" aria-pressed="${lf==="all"}">全部</button>${P.ERAS.filter(e=>P.PH.some(p=>p.era===e[0])).map(e=>`<button data-e="${e[0]}" aria-pressed="${lf===e[0]}">${esc(e[1])}</button>`).join("")}</div>
 <div class="plist">${P.PH.filter(p=>lf==="all"||p.era===lf).map(p=>`<a href="#/p/${p.id}" class="${done[p.id]?"done":""}" style="border-left-color:${ecol(p.era)}"><b>${esc(p.name)}</b><small>${esc(p.yrs.split("；")[0])}</small><span>${esc(p.tag)}</span></a>`).join("")}</div>`};
 let hide=false;
